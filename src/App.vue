@@ -1,4 +1,4 @@
-<script setup>
+<script>
 import { ref, onMounted } from 'vue';
 
 const suodatuksessa = ref(false);
@@ -11,13 +11,13 @@ function switchSuodata(e) {
 
 onMounted(() => {
   console.log(`Alkuperäinen suodatuksessa on ${suodatuksessa.value}.`)
-})
+});
 
 </script>
 
 <template>
   <meta charset="UTF-8">
-    <h1>Laske, kuinka täytät ravitsemussuositukset halvimmalla!</h1>
+    <h1 class="otsikko">Laske, kuinka täytät ravitsemussuositukset halvimmalla!</h1>
     Laskuri perustuu:
     <ul>
       <li>50 ruoka-aineen <a href="https://fineli.fi/fineli/fi/index">ravintoarvoihin</a>,</li>
@@ -59,3 +59,10 @@ onMounted(() => {
       <button @click="switchSuodata">{{ suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti' }}</button>
     </form>
 </template>
+
+<style>
+.otsikko {
+  color: red;
+  font-family: sans-serif;
+}
+</style>
