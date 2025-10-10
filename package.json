@@ -1,10 +1,13 @@
 {
   "name": "saastaruoassa-vue",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "vite"
   },
   "dependencies": {
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "@vitejs/plugin-vue": "^6.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
