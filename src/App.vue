@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
-import Select from 'primevue/select';
 
 const suodatuksessa = ref(false);
 
@@ -32,6 +31,10 @@ function switchSuodata(e) {
   suodatuksessa.value = !suodatuksessa.value;
 }
 
+function onFormSubmit() {
+  alert('submitted!!!');
+}
+
 onMounted(() => {
   console.log(`Alkuperäinen suodatuksessa on ${suodatuksessa.value}.`);
 });
@@ -49,7 +52,7 @@ onMounted(() => {
       <li><a href="https://en.wikipedia.org/wiki/Linear_programming">lineaariseen optimointiin</a>.</li>
     </ul>
     Syötä tietosi:
-    <form>
+    <Form v-slot="$form" @submit="onFormSubmit">
       <fieldset>
         <label>Ikä: 
           <Select
@@ -78,7 +81,8 @@ onMounted(() => {
         <label><input type="checkbox">Vegaani</label>
       </fieldset>
       <button @click="switchSuodata">{{ suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti' }}</button>
-    </form>
+      <Button type="submit" label="Laske!" />
+    </Form>
 </template>
 
 <style>
@@ -98,6 +102,10 @@ onMounted(() => {
 
 .p-inputnumber {
   background-color: #ddd !important;
+}
+
+.p-button {
+  background-color: #800 !important;
 }
 
 body {
