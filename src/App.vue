@@ -19,6 +19,13 @@ const iat = [
   { name: '>75', key: '75' }
 ];
 
+const selectedGender = ref(null);
+
+const sukupuolet = [
+  { name: 'Mies', key: 'M' },
+  { name: 'Nainen', key: 'N' }
+];
+
 function switchSuodata(e) {
   e.preventDefault();
   console.log(suodatuksessa.value);
@@ -51,16 +58,18 @@ onMounted(() => {
             optionLabel="name"
             optionValue="key"
             class="w-full"
-            appendTo="body"
           ></Select>
         </label>
         <label> Sukupuoli: 
-          <select>
-            <option>Mies</option>
-            <option>Nainen</option>
-          </select>
+          <Select
+            v-model="selectedGender"
+            :options="sukupuolet"
+            optionLabel="name"
+            optionValue="key"
+            class="w-full"
+          ></Select>
         </label>
-        <label> Energiantarve (kcal/päivä): <input type="number"></label>
+        <label> Energiantarve (kcal/päivä): <InputNumber v-model="energyNeed" name="energia"/></label>
       </fieldset>
       <fieldset>
         <label><input type="checkbox">Keliakia</label>
@@ -78,9 +87,17 @@ onMounted(() => {
   font-family: sans-serif;
 }
 
+.p-select {
+  background-color: #ddd !important;
+}
+
 .p-select-option {
-  background-color: white !important;
+  background-color: #ddd !important;
   border-bottom: 1px solid #eee;
+}
+
+.p-inputnumber {
+  background-color: #ddd !important;
 }
 
 body {
