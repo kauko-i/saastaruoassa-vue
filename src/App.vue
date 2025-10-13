@@ -10,7 +10,7 @@ function switchSuodata(e) {
 }
 
 onMounted(() => {
-  console.log(`Alkuperäinen suodatuksessa on ${suodatuksessa.value}.`)
+  console.log(`Alkuperäinen suodatuksessa on ${suodatuksessa.value}.`);
 });
 
 </script>
