@@ -6,4 +6,4 @@ export default {
     <label><input type="checkbox" checked>Edamjuusto</label>
     <label><input type="checkbox" checked>Emmentaljuusto</label>
   </template>`
-}
+};
