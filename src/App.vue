@@ -1,7 +1,23 @@
-<script>
-import { ref, onMounted } from 'vue';
+<script setup>
+import { ref, onMounted, reactive } from 'vue';
+import Select from 'primevue/select';
 
 const suodatuksessa = ref(false);
+
+const selectedAge = ref(null);
+
+const iat = [
+  { name: '2-3', key: '2' },
+  { name: '4-6', key: '4' },
+  { name: '7-10', key: '7' },
+  { name: '11-14', key: '11' },
+  { name: '15-17', key: '15' },
+  { name: '18-24', key: '18' },
+  { name: '25-50', key: '25' },
+  { name: '51-69', key: '51' },
+  { name: '70-74', key: '70' },
+  { name: '>75', key: '75' }
+];
 
 function switchSuodata(e) {
   e.preventDefault();
@@ -28,19 +44,15 @@ onMounted(() => {
     Syötä tietosi:
     <form>
       <fieldset>
-        <label>Ikä:
-          <select>
-            <option>2-3</option>
-            <option>4-6</option>
-            <option>7-10</option>
-            <option>11-14</option>
-            <option>15-17</option>
-            <option>18-24</option>
-            <option>25-50</option>
-            <option>51-69</option>
-            <option>70-74</option>
-            <option>>75</option>
-          </select>
+        <label>Ikä: 
+          <Select
+            v-model="selectedAge"
+            :options="iat"
+            optionLabel="name"
+            optionValue="key"
+            class="w-full"
+            appendTo="body"
+          ></Select>
         </label>
         <label> Sukupuoli: 
           <select>
@@ -64,5 +76,14 @@ onMounted(() => {
 .otsikko {
   color: red;
   font-family: sans-serif;
+}
+
+.p-select-option {
+  background-color: white !important;
+  border-bottom: 1px solid #eee;
+}
+
+body {
+  font-family: system-ui, sans-serif;
 }
 </style>
