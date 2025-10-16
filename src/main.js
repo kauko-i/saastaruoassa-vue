@@ -4,10 +4,15 @@ import Select from 'primevue/select';
 import InputNumber from 'primevue/inputnumber';
 import Button from 'primevue/button';
 import { Form } from '@primevue/forms';
+import Aura from '@primeuix/themes/aura';
 import App from './App.vue';
 
 const app = createApp(App);
-app.use(PrimeVue);
+app.use(PrimeVue, {
+    theme: {
+        preset: Aura,
+    }
+});
 app.component('Select', Select);
 app.component('InputNumber', InputNumber);
 app.component('Button', Button);

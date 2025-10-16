@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 import Yksittaiset from './Yksittaiset.vue';
+import Tulokset from './Tulokset.vue';
 
 const suodatuksessa = ref(false);
+
+const naytaTulokset = ref(false);
 
 const selectedAge = ref(null);
 
@@ -26,6 +29,8 @@ const sukupuolet = [
   { name: 'Nainen', key: 'N' }
 ];
 
+const energyNeed = ref(null);
+
 function switchSuodata(e) {
   e.preventDefault();
   console.log(suodatuksessa.value);
@@ -33,7 +38,7 @@ function switchSuodata(e) {
 }
 
 function onFormSubmit() {
-  const result = fetch('example.org');
+  naytaTulokset.value = true;
 }
 
 onMounted(() => {
@@ -85,6 +90,7 @@ onMounted(() => {
       <Yksittaiset v-if="suodatuksessa"/>
       <Button type="submit" label="Laske!" />
     </Form>
+    <Tulokset v-if="naytaTulokset"/>
 </template>
 
 <style>
@@ -94,23 +100,11 @@ onMounted(() => {
 }
 
 .p-select {
-  background-color: #ddd !important;
-  width: 5em;
-}
-
-.p-select-option {
-  background-color: #ddd !important;
-  border-bottom: 1px solid #eee;
-}
-
-.p-inputnumber {
-  background-color: #ddd;
   width: 10em;
 }
 
-.p-button {
-  background-color: #800;
-  margin: 0.1rem !important;
+.p-inputnumber {
+  width: 15em;
 }
 
 body {
