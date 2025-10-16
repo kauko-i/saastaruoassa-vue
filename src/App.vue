@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
+import Yksittaiset from './Yksittaiset.vue';
 
 const suodatuksessa = ref(false);
 
@@ -32,7 +33,7 @@ function switchSuodata(e) {
 }
 
 function onFormSubmit() {
-  alert('submitted!!!');
+  const result = fetch('example.org');
 }
 
 onMounted(() => {
@@ -80,7 +81,8 @@ onMounted(() => {
         <label><input type="checkbox">Vegetaristi</label>
         <label><input type="checkbox">Vegaani</label>
       </fieldset>
-      <button @click="switchSuodata">{{ suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti' }}</button>
+      <Button @click="switchSuodata" :label="`${suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti'}`"></button>
+      <Yksittaiset v-if="suodatuksessa"/>
       <Button type="submit" label="Laske!" />
     </Form>
 </template>
@@ -93,6 +95,7 @@ onMounted(() => {
 
 .p-select {
   background-color: #ddd !important;
+  width: 5em;
 }
 
 .p-select-option {
@@ -101,11 +104,13 @@ onMounted(() => {
 }
 
 .p-inputnumber {
-  background-color: #ddd !important;
+  background-color: #ddd;
+  width: 10em;
 }
 
 .p-button {
-  background-color: #800 !important;
+  background-color: #800;
+  margin: 0.1rem !important;
 }
 
 body {
