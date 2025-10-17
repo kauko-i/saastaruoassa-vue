@@ -86,7 +86,7 @@ onMounted(() => {
         <label><input type="checkbox">Vegetaristi</label>
         <label><input type="checkbox">Vegaani</label>
       </fieldset>
-      <Button @click="switchSuodata" :label="`${suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti'}`"></button>
+      <Button @click="switchSuodata" :label="`${suodatuksessa ? 'Älä suodatakaan' : 'Suodata ruokia manuaalisesti'}`" />
       <Yksittaiset v-if="suodatuksessa"/>
       <Button type="submit" label="Laske!" />
     </Form>
