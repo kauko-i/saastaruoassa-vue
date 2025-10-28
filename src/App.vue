@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
 import { faker } from '@faker-js/faker';
 import random from 'random';
 import Yksittaiset from './Yksittaiset.vue';
@@ -9,7 +9,7 @@ const suodatuksessa = ref(false);
 
 const naytaTulokset = ref(false);
 
-const tulokset = ref([]);
+const tulokset = ref({ lista: [], summa: 0 });
 
 const selectedAge = ref(null);
 
@@ -42,8 +42,12 @@ function switchSuodata(e) {
 }
 
 async function onFormSubmit() {
-  tulokset.value = [];
-  for (let i = 0; i < 10; i++) tulokset.value.push(`${faker.food.ingredient()} (${random.int(1, 2000)} g/viikko)`);
+  tulokset.value = { lista: [], summa: 0 };
+  for (let i = 0; i < 10; i++) {
+    const hinta = Math.round(random.float(1, 1000))/100;
+    tulokset.value.lista.push(`${faker.food.ingredient()} (${hinta} €/viikko)`);
+    tulokset.value.summa += hinta;
+  };
   naytaTulokset.value = true;
 }
 
