@@ -1,11 +1,15 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
+import { faker } from '@faker-js/faker';
+import random from 'random';
 import Yksittaiset from './Yksittaiset.vue';
 import Tulokset from './Tulokset.vue';
 
 const suodatuksessa = ref(false);
 
 const naytaTulokset = ref(false);
+
+const tulokset = ref([]);
 
 const selectedAge = ref(null);
 
@@ -37,13 +41,11 @@ function switchSuodata(e) {
   suodatuksessa.value = !suodatuksessa.value;
 }
 
-function onFormSubmit() {
+async function onFormSubmit() {
+  tulokset.value = [];
+  for (let i = 0; i < 10; i++) tulokset.value.push(`${faker.food.ingredient()} (${random.int(1, 2000)} g/viikko)`);
   naytaTulokset.value = true;
 }
-
-onMounted(() => {
-  console.log(`Alkuperäinen suodatuksessa on ${suodatuksessa.value}.`);
-});
 
 </script>
 
@@ -90,7 +92,7 @@ onMounted(() => {
       <Yksittaiset v-if="suodatuksessa"/>
       <Button type="submit" label="Laske!" />
     </Form>
-    <Tulokset v-if="naytaTulokset"/>
+    <Tulokset v-if="naytaTulokset" :aineet="tulokset" />
 </template>
 
 <style>
@@ -105,6 +107,10 @@ onMounted(() => {
 
 .p-inputnumber {
   width: 15em;
+}
+
+.p-button {
+  margin: 0.1em;
 }
 
 body {

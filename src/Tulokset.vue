@@ -1,6 +1,11 @@
+<script setup>
+defineProps(['aineet']);
+
+</script>
+
 <template>
     <p>Tulokset (g/viikko):</p>
     <ul>
-        <li>Liian aikaista...</li>
+        <li v-for="aine in aineet">{{ aine }}</li>
     </ul>
 </template>
